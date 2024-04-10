@@ -1,0 +1,17 @@
+/* Footer.css */
+
+.dark-footer {
+    background-color: #333; /* Dark background color */
+    color: #fff; /* Text color */
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .social-media-links a {
+    color: #fff;
+    margin: 0 10px;
+    font-size: 24px;
+  }
+  
+  /* Customize the icon styles if needed */
+  
