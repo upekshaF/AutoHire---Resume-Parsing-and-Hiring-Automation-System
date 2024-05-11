@@ -1,132 +1,116 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Carousel } from 'reactstrap'
+import React, { useState, useEffect } from "react";
+import { Container, Row, Button } from 'reactstrap';
+import axios from "axios";
+import { Link, useNavigate } from 'react-router-dom';
+import SliderComponent from "../components/dashboard/Slider";
+import "./Starter.css"; // Import CSS file for styling
 
 const Starter = () => {
+  const [jobs, setJobs] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [skills,setSkills] = useState([])
+  const [skillsIds, setSkillsIds]= useState([])
+  const navigate = useNavigate();
+  const colors = ['#ff7f0e', '#2ca02c', '#1f77b4', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'];
 
-  const [selectedFile, setSelectedFile] = useState(null);
-
-
-
-  let data = [
-    {
-      id: 450,
-      name: "charuka",
-      age: 15,
-      avoid: 0,
-    },
-    {
-      name: "Kavindu",
-      age: 15,
-      avoid: 0,
-    }, {
-      name: "Nimal",
-      age: 15,
-      avoid: 0,
-    }, {
-      name: "Kalana",
-      age: 15,
-      avoid: 0,
-    },
-  ]
-  let newData = data.map((item) => ({
-    ...item,
-    ...(!item.id && { 'id': 0 }),
-  }));
-  console.log(newData)
+  useEffect(() => {
+    fetchJobRoles();
+    fetchSkills();
+  }, []);
 
   
-  return (
-    <>
+  const fetchSkills = async () => {
+    try {
+      const response = await axios.get('https://resume-parser-mw16.onrender.com/api/getAllSkills');
+      
+     
+      setSkills(response.data);
+
+    } catch (error) {
+      console.error('Error fetching skills:', error);
+    }
+
+  };
+  const fetchJobRoles = async () => {
+    try {
+      const response = await axios.get('https://resume-parser-mw16.onrender.com/api/getJobs');
     
+      setJobs(response.data);
+     // console.log(response.data)
 
-      <Container>
+    } catch (error) {
+      console.error('Error fetching jobs:', error);
+    }
+  };
 
-        <div className="bg-white p-3 rounded w-100 justify-content-center">
-          <h1>Welcome to Resume Parser</h1>
+  const getRandomColor = () => {
+    const randomIndex = Math.floor(Math.random() * colors.length);
+    return colors[randomIndex];
+  };
 
-          <p className="lead mb-4">
-            Streamline your hiring process with our advanced resume parsing service.
-            Harness the power of the latest machine learning algorithms to extract
-            valuable information and details from resumes, making your recruitment
-            journey efficient and hassle-free.
-          </p>
-          <hr className="mb-4" />
-          <p>
-            Whether you're a small business or a large enterprise, our service
-            provides a seamless experience for analyzing resumes and simplifying
-            your hiring decisions.
-          </p>
-          <button type="button" className="btn btn-dark btn-lg mt-4">
-            Get Started
-          </button>
-        </div>
+  const goToJobPoster = (e) => {
+   
+    const filteredSkills = skills.filter(skill => e.skills_ids.includes(skill.skill_id));
 
-       
-
-        {/* Features Section */}
-        <Row className="mt-4">
-          <Col>
-            <div className='bg-white p-3 rounded w-100 justify-content-center' >
-              <h2>Key Features</h2>
-              <ul className="feature-list">
-                <li>
-                  <i class="bi bi-check-circle">
-                    Efficient parsing of resumes
-                  </i>
-                </li>
-                <li>
-                  <i className="bi bi-info-circle" />
-                  Accurate extraction of relevant information
-                </li>
-                <li>
-                  <i className="bi bi-wrench-adjustable-circle" />
-                  Customizable parsing rules
-                </li>
-                {/* Add more features */}
-              </ul>
-              <h2>How It Works</h2>
-              <p>
-                Our resume parser utilizes advanced algorithms to analyze and
-                extract essential information from uploaded documents. Follow these
-                simple steps to streamline your hiring process:
-              </p>
-              <ol>
-                <li>Upload the candidate's resume.</li>
-                <li>Review parsed information.</li>
-                <li>Make informed hiring decisions.</li>
-              </ol>
-            </div>
-          </Col>
-        </Row>
-
-
-
-        {/* Contact Section */}
-        <Row className="mt-4">
-          <Col>
-            <div className='bg-white p-3 rounded w-100 justify-content-center' >
-              <h2>Contact Us</h2>
-              <p>
-                Have questions or need assistance? Feel free to reach out to our
-                support team.
-              </p>
-              <footer>
-                <p>&copy; 2024 Your Resume Parser. All rights reserved.</p>
-              </footer>
-            </div>
-            {/* Add contact information or a contact form */}
-          </Col>
-        </Row>
-
-      </Container>
-
-
-
-
-    </>
+    // Extract skill names from filteredSkills
+    const skillNamesArray = filteredSkills.map(skill => skill.skill_name);
+    
+    // Store skill names array in local storage
+    localStorage.setItem("SkillsObj", JSON.stringify(skillNamesArray));
+    console.log(skillNamesArray)    
+     navigate('/upload');
+  };
+ 
+  const filteredJobs = jobs.filter(job =>
+    job.job_title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  return (
+    <>
+      <Container>
+        <Row>
+          <SliderComponent />
+        </Row>
 
+        <Row className="justify-content-center text-center p-5">
+          <h1 className="text-light"><strong>Transforming Resumes into Opportunities</strong></h1>
+        </Row>
+
+        <Row className="p-3">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12 mb-4">
+                <input
+                  type="text"
+                  placeholder="Search by job title"
+                  className="form-control"
+                  value={searchTerm}
+                  onChange={e => setSearchTerm(e.target.value)}
+                />
+              </div>
+              {filteredJobs.map((job, index) => (
+  <div key={job.job_id} className="col-md-4 mb-4">
+    <div className="card windows-tile">
+      <div className="card-body bg-dark" style={{ height: "200px" }}> {/* Adjust height as needed */}
+        <h4 className="card-title font-weight-bold text-info">{job.job_title}</h4>
+        <h6 className="card-subtitle mb-2 text-light">{new Date(job.created_at).toLocaleString()}</h6>
+        <p className="card-text mb-4 text-light">{job.job_description}</p>
+      </div>
+      <div className="card-footer d-flex justify-content-end align-items-end bg-dark" style={{ backgroundColor: "success", height: "50px" }}> {/* Adjust height as needed */}
+        <Button onClick={(e) =>goToJobPoster (job)} className="text-light bg-success rounded p-2">
+          Upload Your CV
+        </Button>
+      </div>
+    </div>
+  </div>
+))}
+            </div>
+          </div>
+        </Row>
+       
+      </Container>
+    </>
+  );
 };
 
 export default Starter;

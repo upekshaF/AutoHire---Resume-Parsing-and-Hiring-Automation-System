@@ -1,5 +1,5 @@
 import { Button, Nav, NavItem } from "reactstrap";
-import Logo from "./Logo";
+import Logo from "../assets/images/logos/logo.png";
 import { Link, useLocation } from "react-router-dom";
 import { Menu } from 'antd';
 
@@ -9,20 +9,26 @@ const navigation = [
     href: "/starter",
     icon: "bi bi-speedometer2",
   },
-  {
-    title: "Upload",
-    href: "/Upload",
-    icon: "bi bi-upload",
-  },
+  
   {
     title: "Jobs",
     href: "/Jobs",
     icon: "bi bi-briefcase",
   },
   {
+    title: "Hiring Process",
+    href: "/hiring",
+    icon: "bi bi-person-check",
+  },,
+  {
     title: "People",
     href: "/People",
     icon: "bi bi-people",
+  },
+  {
+    title: "Report",
+    href: "/reports",
+    icon: "bi bi-file-earmark-bar-graph-fill",
   },
   
 ];
@@ -36,7 +42,7 @@ const Sidebar = () => {
   return (
     <div className="p-3">
       <div className="d-flex align-items-center">
-        {/* <Logo /> */}
+       <img src={Logo} className="rounded-5"></img>
 
         <strong>Resume Parser </strong>
         <span className="ms-auto d-lg-none">

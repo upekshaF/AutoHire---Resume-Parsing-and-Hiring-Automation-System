@@ -14,4 +14,24 @@
   }
   
   /* Customize the icon styles if needed */
-  
+  /* CSS for navbar hover effects */
+.navbar-nav .nav-link:hover {
+  color: #007bff; /* Change to your preferred hover color */
+}
+
+.navbar-brand:hover {
+  color: #0959af; /* Change to your preferred hover color */
+}
+.rightHalf {
+  flex-grow: 1;
+  height: 100vh; /* This makes the right half of the page cover the full height */
+}
+
+@media (min-width: 992px) {
+  .contentArea {
+      flex: 1;
+  }
+  .rightHalf {
+      display: block;
+  }
+}

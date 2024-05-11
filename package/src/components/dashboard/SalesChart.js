@@ -1,7 +1,7 @@
 import { Card, CardBody, CardSubtitle, CardTitle } from "reactstrap";
 import Chart from "react-apexcharts";
 
-const SalesChart = () => {
+const SalesChart = (data) => {
   const chartoptions = {
     series: [
       {
@@ -29,16 +29,18 @@ const SalesChart = () => {
         width: 1,
       },
       xaxis: {
-        categories: [
-          "Jan",
-          "Feb",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "Aug",
-        ],
+        // categories: [
+        //   "Jan",
+        //   "Feb",
+        //   "March",
+        //   "April",
+        //   "May",
+        //   "June",
+        //   "July",
+        //   "Aug",
+        // ],
+
+        categories : data.map(item => item.id),
       },
     },
   };

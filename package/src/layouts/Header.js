@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Navbar,
   Collapse,
@@ -15,11 +15,12 @@ import {
 } from "reactstrap";
 import { ReactComponent as LogoWhite } from "../assets/images/logos/xtremelogowhite.svg";
 import user1 from "../assets/images/users/user1.jpg";
+import { useState } from "react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
-
+  const navigate = useNavigate();
   const toggle = () => setDropdownOpen((prevState) => !prevState);
   const Handletoggle = () => {
     setIsOpen(!isOpen);
@@ -27,6 +28,12 @@ const Header = () => {
   const showMobilemenu = () => {
     document.getElementById("sidebarArea").classList.toggle("showSidebar");
   };
+
+  const handleMyAccountClick = () => {
+    // Navigate to My Account page
+   navigate('/account')
+  };
+
   return (
     <Navbar color="dark" dark expand="md">
       <div className="d-flex align-items-center">
@@ -91,11 +98,7 @@ const Header = () => {
           </DropdownToggle>
           <DropdownMenu>
             <DropdownItem header>Info</DropdownItem>
-            <DropdownItem>My Account</DropdownItem>
-            <DropdownItem>Edit Profile</DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem>My Balance</DropdownItem>
-            <DropdownItem>Inbox</DropdownItem>
+            <DropdownItem onClick={handleMyAccountClick}>My Account</DropdownItem>
             <DropdownItem>Logout</DropdownItem>
           </DropdownMenu>
         </Dropdown>

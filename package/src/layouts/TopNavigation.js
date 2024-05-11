@@ -1,28 +1,32 @@
 // TopNavigation.js
 import React from 'react';
-
+import '../layouts/layout.css'
 const TopNavigation = () => {
   return (
 
-    
-  <nav className="navbar  navbar-expand-lg navbar-white" >
-   
-
-  <div className='container-fluid justify-content-end'>
-          
-    <ul class="navbar-nav justify-content-center">
-      <li class="nav-item active">
-        <a class="nav-link text-dark" href="/">Home <span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="/">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="/">Contact Us</a>
-      </li>
-    </ul>
+    <nav class="navbar navbar-expand-lg navbar-light ">
+  <div class="container-fluid">
+    {/* <!-- Insert site name "Resume Parser" to the left corner --> */}
+    <h3 class="navbar-brand" href="#">Resume Parser</h3>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active " aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">Contact Us</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
+
 
 
 

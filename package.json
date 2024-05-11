@@ -1,7 +1,9 @@
 {
   "dependencies": {
+    "@boldreports/react-reporting-components": "^5.4.38",
     "body-parser": "^1.20.2",
     "bootstrap-icons": "^1.11.3",
+    "create-react-class": "^15.7.0",
     "ejs": "^3.1.9",
     "express": "^4.19.0"
   }

@@ -1,18 +1,27 @@
 import React from "react";
 import { Row, Col } from 'reactstrap'
-import friends_getstarted from '../../assets/images/bg/get_started_resume_parser.svg'
+import friends_getstarted from '../../assets/images/bg/bg_new.png'
 import { Link } from 'react-router-dom'
-
+import { useEffect, useState } from 'react';
+import './Startup.css'
 function GettingStarted() {
+    const [loaded, setLoaded] = useState(false);
 
+    useEffect(() => {
+        // Simulating a delay for the animation
+        const timeout = setTimeout(() => {
+            setLoaded(true);
+        }, 500);
+
+        // Clear timeout on unmount or when loaded is set to true
+        return () => clearTimeout(timeout);
+    }, []);
 
     return (
         <>
-
-            <Row>
-
-                <Col className="col">
-                    <div className='py-5'>
+           <Row className={"vh-100" + (loaded ? " loaded" : "")}>
+                <div className={"col-md-6 d-flex justify-content-center align-items-center " + (loaded ? "fade-in" : "")}>
+                    <div className='py-5 text-center'>
                         <b className="h1 display-1"><strong>Resume Parser</strong></b>
                         <h4>Unlocking Your <strong className="font-weight-bold">POTENTIAL</strong> One Resume at a <strong className="font-weight-bold">Time</strong></h4>
                         <div className="py-5">
@@ -23,18 +32,13 @@ function GettingStarted() {
                                 <Link to="/login" className='btn btn-dark w-75'><strong>Already Have an Account</strong></Link>
                             </div>
                         </div>
-
-
                     </div>
-                </Col>
-                <Col>
-                    <div className='container text-center' >
-                        <img src={friends_getstarted} class="img-fluid" alt=""></img>
-                    </div>
-
-                </Col>
-
+                </div>
+                <div className={"col contentArea bg-success d-flex justify-content-center align-items-center " + (loaded ? "fade-in" : "")}>
+                    <img src={friends_getstarted} alt="" className="img-fluid" style={{ maxWidth: '100%', maxHeight: '100%' }} />
+                </div>
             </Row>
+
 
 
         </>

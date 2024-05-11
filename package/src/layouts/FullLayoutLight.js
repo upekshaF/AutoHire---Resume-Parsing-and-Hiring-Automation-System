@@ -7,7 +7,7 @@ import Footer from "../layouts/Footer";
 const FullLayout = () => {
   return (
     <main>
-      <div className="pageWrapper d-lg-flex bg-dark">
+      <div className="pageWrapper d-lg-flex bg-light">
         {/********Sidebar**********/}
         <aside className="sidebarArea shadow" id="sidebarArea">
           <Sidebar />

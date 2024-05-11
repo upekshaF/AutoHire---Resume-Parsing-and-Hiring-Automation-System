@@ -1,0 +1,8 @@
+.fade-in {
+    opacity: 50;
+    transition: opacity 5s ease-in-out;
+}
+
+.loaded .fade-in {
+    opacity: 100;
+}

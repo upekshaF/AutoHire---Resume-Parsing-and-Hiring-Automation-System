@@ -3,15 +3,15 @@ function Validation(values){
     const email_pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     const password_pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&^])[A-Za-z\d@.#$!%*?&]{8,15}$/
 
-    if(values.name ===""){
-        error.name = "Name should not be empty"
+    if(values.username ===""){
+        error.username = "Username should not be empty"
      }
     else {
-        error.name = ""
+        error.username = ""
      }
 
     if(values.email ===""){
-       error.email = "Name should not be empty"
+       error.email = "Email should not be empty"
     }
     else if(!email_pattern.test(values.email)){
        error.email = "Emails Didn't match"

@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Validation from "./SignupValidation";
-import axios from 'axios';
-import { Col, Row } from "reactstrap";
-import friends_signup from "../../assets/images/bg/bg_new.png"
-
-
-
-function Signup() {
+import { Container, Row, Col, Carousel, Card, ListGroupItem, ListGroup,Button } from 'reactstrap'
+import axios from "axios";
+import { Link, useNavigate } from 'react-router-dom'
+import Validation from "../Startup/SignupValidation";
+const AdminDashboard = () => {
 
     const [values, setValues] = useState({
         username: '',
         email: '',
         password: '',
-        isadmin: 1
+        isadmin: 1,
+        isrecruiter: 1,
     })
 
     const [username, setUsername] = useState('');
@@ -34,10 +31,11 @@ function Signup() {
         valuesToSend.append('email', values.email);
         valuesToSend.append('password', values.password);
         valuesToSend.append('is_admin', values.isadmin);
-        setErrors(Validation( {username : username, email : email, password : password, is_admin : 0}));
+        valuesToSend.append('is_recruiter', values.isrecruiter);
+        setErrors(Validation( {username : username, email : email, password : password, is_admin : 1,isrecruiter : 1}));
         if(errors.username === "" && errors.email === ""  && errors.password === "") 
         {
-            axios.post('https://resume-parser-mw16.onrender.com/api/signup', {username : username, email : email, password : password, is_admin : 0,is_recruiter : 1})
+            axios.post('https://resume-parser-mw16.onrender.com/api/signup', {username : username, email : email, password : password, is_admin : 1,isrecruiter:1})
             .then(res => {
                 
                 // navigate('/starter',{state:{name:values.name,email:values.email,password:values.password}});
@@ -97,14 +95,10 @@ function Signup() {
     
 
     {/* Right Column */}
-    <Col className="col-md-6 d-flex justify-content-center align-items-center bg-success">
-        <div className='container text-center'>
-            <img src={friends_signup} className="img-fluid" alt="" />
-        </div>
-    </Col>
+   
     <Col className="col-md-6 d-flex justify-content-center align-items-center ">
         <div className="container">
-            <h1>Sign-Up</h1>
+            <h1>Create New User</h1>
             <form action='' onSubmit={handleSubmit}>
                 <div className='mb-3'>
                     <label htmlFor='username'><strong>Username</strong></label>
@@ -137,5 +131,6 @@ function Signup() {
 
         </>
     )
-}
-export default Signup
+};
+
+export default AdminDashboard;
