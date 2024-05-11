@@ -1,0 +1,12 @@
+
+.horizontal-slider {
+    max-width: 100%;
+    height: 300px; /* Adjust the height as needed */
+  }
+  
+  .horizontal-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover; /* Maintain aspect ratio and cover entire area */
+  }
+  

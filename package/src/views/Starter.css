@@ -1,0 +1,34 @@
+.windows-tile {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .windows-tile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .windows-tile .card-footer {
+    padding: 10px;
+    text-align: center;
+  }
+  .card-footer {
+    padding: 0; /* Remove default padding */
+}
+
+.rounded-circle {
+    border-radius: 10%; /* Make the button rounded */
+}
+
+.p-2 {
+    padding: 0.5rem !important; /* Adjust padding for smaller size */
+}
+.table-row-light {
+  background-color: #52c4b4;
+}
+.table-row-dark {
+  background-color: #fbfbfb;
+}
