@@ -145,35 +145,35 @@ const HiaringStatus = () => {
         }
     }
 
-    const handleDelete = (record) => {
-      confirm({
-        title: "Are you sure you want to delete this job?",
-        icon: <ExclamationCircleOutlined />,
-        content: "This action cannot be undone.",
-        okText: "Delete",
-        okType: "danger",
-        cancelText: "Cancel",
-        onOk() {
-          deleteJob(record);
-        },
-      });
+    const handleDelete = () => {
+        confirm({
+            title: 'Are you sure you want to delete this job?',
+            icon: <ExclamationCircleOutlined />,
+            content: 'This action cannot be undone.',
+            okText: 'Delete',
+            okType: 'danger',
+            cancelText: 'Cancel',
+            onOk() {
+                // deleteJob(record);
+            },
+        });
     };
 
-    const deleteJob = async (record) => {
-        try {
-            const response = await axios.delete(`https://resume-parser-mw16.onrender.com/api/job_roles/${record.job_id}`);
+    // const deleteJob = async (record) => {
+    //     try {
+    //         const response = await axios.delete(`https://resume-parser-mw16.onrender.com/api/job_roles/${record.job_id}`);
 
-            if (response.status === 200) {
-                fetchJobRoles()
-            } else {
-                // Handle other response status codes if needed
-                console.error('Failed to delete job:', response.data.error);
-            }
-        } catch (error) {
-            // Handle network errors or other exceptions
-            console.error('Error deleting job:', error.message);
-        }
-    };
+    //         if (response.status === 200) {
+    //             fetchJobRoles()
+    //         } else {
+    //             // Handle other response status codes if needed
+    //             console.error('Failed to delete job:', response.data.error);
+    //         }
+    //     } catch (error) {
+    //         // Handle network errors or other exceptions
+    //         console.error('Error deleting job:', error.message);
+    //     }
+    // };
 
     // Usage example:
 
@@ -441,30 +441,30 @@ const HiaringStatus = () => {
         },
     ];
      // PDF Document Styles
-     const styles = StyleSheet.create({
-        page: {
-            flexDirection: 'row',
-            backgroundColor: '#E4E4E4',
-            padding: 10,
-        },
-        section: {
-            margin: 10,
-            padding: 10,
-            flexGrow: 1,
-        },
-        header: {
-            fontSize: 20,
-            marginBottom: 10,
-        },
-        tableHeader: {
-            backgroundColor: '#000',
-            color: '#fff',
-        },
-        tableCell: {
-            padding: 5,
-            border: '1px solid #000',
-        },
-    });
+    //  const styles = StyleSheet.create({
+    //     page: {
+    //         flexDirection: 'row',
+    //         backgroundColor: '#E4E4E4',
+    //         padding: 10,
+    //     },
+    //     section: {
+    //         margin: 10,
+    //         padding: 10,
+    //         flexGrow: 1,
+    //     },
+    //     header: {
+    //         fontSize: 20,
+    //         marginBottom: 10,
+    //     },
+    //     tableHeader: {
+    //         backgroundColor: '#000',
+    //         color: '#fff',
+    //     },
+    //     tableCell: {
+    //         padding: 5,
+    //         border: '1px solid #000',
+    //     },
+    // });
     
     return (
         <>
