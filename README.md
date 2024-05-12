@@ -27,9 +27,9 @@ AutoHire is a comprehensive resume parsing and hiring automation system designed
 
 ## Installation
 
-1. Download the zip folder from the main branch
+Download the zip folder from the main branch
    
-2. To get started with this project, follow the steps below:
+To get started with this project, follow the steps below:
 
 1. **Navigate to the package directory:**
     ```sh
@@ -45,3 +45,27 @@ AutoHire is a comprehensive resume parsing and hiring automation system designed
     ```sh
     npm start
     ```
+    
+4. **Navigate to the backend directory:**
+    ```sh
+    cd Backend
+    ```
+
+5. **Install the dependencies:**
+    ```sh
+    npm i
+    ```
+    
+6. **Navigate to the root directory:**
+    ```sh
+    cd 
+    ```
+    
+7. **Install the dependencies:**
+    ```sh
+    pip install flask, tika, spacy
+    ```
+
+8. **Run the app.py file from the Resume Parser Model folder**
+    
+   
