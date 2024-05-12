@@ -68,4 +68,8 @@ To get started with this project, follow the steps below:
 
 8. **Run the app.py file from the Resume Parser Model folder**
     
-   
+Then you are good to go. 
+
+Please create a new account using the sign up option or login using google to accesss the system. 
+
+
