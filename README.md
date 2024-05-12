@@ -26,3 +26,22 @@ AutoHire is a comprehensive resume parsing and hiring automation system designed
 - **Testing**: Supertest, Jest
 
 ## Installation
+
+1. Download the zip folder from the main branch
+   
+2. To get started with this project, follow the steps below:
+
+1. **Navigate to the package directory:**
+    ```sh
+    cd package
+    ```
+
+2. **Install the dependencies:**
+    ```sh
+    npm i
+    ```
+
+3. **Start the application:**
+    ```sh
+    npm start
+    ```
