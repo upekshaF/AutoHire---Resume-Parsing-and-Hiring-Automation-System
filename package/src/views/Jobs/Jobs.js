@@ -335,6 +335,10 @@ const Jobs = () => {
   const handleSubmit = async (e) => {
     //e.preventDefault();
     console.log(selectedSkills)
+    console.log(jobDesc)
+    console.log(jobTitle)
+    console.log(localStorage.getItem('userId'))
+
 
     try {
       const response = await axios.post('https://resume-parser-mw16.onrender.com/api/job_roles', {
@@ -344,7 +348,7 @@ const Jobs = () => {
         skills: selectedSkills
       });
       // console.log(response)
-      if (!response.status == 200) {
+      if (!response.status == 500) {
         throw new Error('Failed to insert data');
       }
       if (response.status == 200) {

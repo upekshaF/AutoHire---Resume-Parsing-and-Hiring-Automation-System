@@ -1,6 +1,8 @@
 import {GoogleLogin} from 'react-google-login'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
  const clientId ="456884400275-6aia8a83henua9rr6ar13g2er7rh1g49.apps.googleusercontent.com"
  
  function LoginButton() 
@@ -42,13 +44,14 @@ const generatePassword = async(username, userId) => {
           
         
        
-       try {
-        axios.post('https://resume-parser-mw16.onrender.com/api/signup', {username : "222222", email : email, password : password, is_admin : 0,is_recruiter : 1})
+       try  {
+        axios.post('https://resume-parser-mw16.onrender.com/api/signup', {username : username, email : email, password : password, is_admin : 0,is_recruiter : 1})
         .then(res => {
-            console.log(res.data.rows)
-            localStorage.setItem('userId', res.data.rows.user_id);
-            localStorage.setItem('isAdmin', res.data.rows.is_admin);
-            navigate('/starter');
+
+          
+            console.log(res.data)
+           
+            handleLogin(username, password)
             })
             .catch(err => console.log(err));
     
@@ -56,9 +59,46 @@ const generatePassword = async(username, userId) => {
         }
         catch 
         {
-            
+            console.log("error")
         }
     }
+    const handleLogin = async (username,password) => {
+    
+      
+    
+    
+          
+      try {
+          const response = await axios.post('https://resume-parser-mw16.onrender.com/api/login', {
+              username: username,
+              password: password
+          });
+          console.log(response.data)
+          if (response.data.message === 'success') {
+              Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "You have been successfully Logged In!",
+                  showConfirmButton: false,
+                  timer: 3000
+              });
+              localStorage.setItem('userId', response.data.user.user_id);
+              localStorage.setItem('isAdmin', response.data.user.is_admin);
+              navigate('/starter');
+          } 
+           
+      } catch (error) {
+        
+          // Display error message using SweetAlert2
+          Swal.fire({
+            icon: 'error',
+            title: 'Login Failed',
+            text: 'Invalid username or password!',
+          });
+      }
+    
+  };
+  
     const onFailure = (res) => {
         console.log("Login Failed", res)
     }

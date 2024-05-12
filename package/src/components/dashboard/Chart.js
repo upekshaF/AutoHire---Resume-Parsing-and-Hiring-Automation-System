@@ -14,7 +14,8 @@ const ChartComponent = ({ data }) => {
     { color: '#e6550d', label: '2nd interview failed' },
     { color: '#8c564b', label: 'rejected' },
     { color: '#7b7b7b', label: 'hold off' },
-    { color: '#17becf', label: 'hired' }
+    { color: '#17becf', label: 'hired' },
+    { color: '#17#', label: 'N/A' }
     // Add more colors or patterns for other status
     
   ];
